@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+	<http pattern="/static/*" security="none" />
+	<http pattern="/public/*" security="none" />
+
+
+
+	<http auto-config="true">
+
+
+		<form-login login-page='/login' default-target-url='/home'
+			login-processing-url="/login_check" username-parameter="username"
+			password-parameter="password" />
+		<logout logout-url="/logout" logout-success-url="/login" />
+
+		<session-management>
+			<concurrency-control max-sessions="10"
+				expired-url="/sessiontimeout" />
+		</session-management>
+
+	</http>
+
+
+	<!-- authentication-success-handler-ref="authenticationSuccessHandler" always-use-default-target="true" -->
+
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="drp" password="bca789" authorities="ROLE_ITDOC" />
+				<user name="jck" password="bca789" authorities="ROLE_SA" />
+				<user name="jch" password="bca789" authorities="ROLE_ADVISER" />
+				<user name="wkwk" password="bca789" authorities="ROLE_ADVISER" />
+
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+
+
+	<!-- <authentication-manager > <authentication-provider ref="uidmAuthenticationProvider"/> 
+		</authentication-manager> <beans:bean id="uidmAuthenticationProvider" class="com.bca.itdoc.security.AuthenticationProvider"/> -->
+
+
+	<beans:bean
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+</beans:beans>  

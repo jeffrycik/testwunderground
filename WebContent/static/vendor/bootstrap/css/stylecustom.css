@@ -1,0 +1,8 @@
+.navbar-custom ul.nav ul.dropdown-menu li a:hover {
+	color: red;
+}
+.navbar-custom.top-nav-collapse .nav li a:hover,
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li.active1 a,.navbar-custom.top-nav-collapse .nav li.active a  {
+    color: red;
+}
